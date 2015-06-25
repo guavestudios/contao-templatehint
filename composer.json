@@ -1,0 +1,19 @@
+{
+  "name":"guave/contao-templatehint",
+  "description":"shows infos over loaded templates",
+  "keywords":["contao", "templatehint"],
+  "type":"contao-module",
+  "license":"MIT",
+  "authors":[
+    {
+      "name":"Guave Studios GmbH",
+      "homepage":"http://www.guaveinteractive.ch"
+    }
+  ],
+  "require":{
+    "php": ">=5.4.0",
+    "contao/core":">=3.5",
+    "contao-community-alliance/composer-installer":"*",
+    "terminal42/contao-namespace-class-loader":">=1.0.2"
+  }
+}
