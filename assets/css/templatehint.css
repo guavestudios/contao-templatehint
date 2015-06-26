@@ -2,7 +2,7 @@
 	position: relative;
 	border: 1px dotted red;
 	margin: 6px 2px;
-	padding: 18px 2px 2px 2px;
+	padding: 24px 2px 2px 2px;
 	zoom: 1;
 }
 
@@ -14,6 +14,7 @@
 	text-align:left;
 	display: block;
 	padding: 2px 5px;
+	min-height: 22px;
 }
 
 .templatehint-template {

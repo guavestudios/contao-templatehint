@@ -10,12 +10,29 @@ class Templatehint {
 
 	protected function __construct() {
 
-		if($this->isFrontendhintActive()) {
-			//register css
-			$GLOBALS['TL_FRAMEWORK_CSS'][] = 'system/modules/templatehint/assets/css/templatehint.css';
-		}
+
 
 	}
+
+	public function addAssets($content, $template){
+
+		if(TL_MODE != 'FE' || !$this->isFrontendhintActive()) {
+			return $content;
+		}
+
+		$head = '';
+
+		if($this->isFrontendhintActive()) {
+
+			$head .= '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">';
+			$head .= '<link type="text/css" rel="stylesheet" href="/system/modules/templatehint/assets/css/templatehint.css"/>';
+
+		}
+
+		return str_replace('</head>', $head.'</head>', $content);
+
+	}
+	
 
 	/**
 	 * @return Templatehint|null
@@ -69,14 +86,26 @@ class Templatehint {
 	public function getTemplate($template) {
 
 		if(!$this->isTwigTemplate()) {
-			return Controller::getTemplate($template);
+			$templateString = Controller::getTemplate($template);
 		} else {
 
 			$twig = \ContaoTwig::getInstance();
 			$loader = $twig->getLoaderFilesystem();
 			$template = $template.'.html5.twig';
-			return $loader->getCacheKey($template);
+			$templateString = $loader->getCacheKey($template);
 		}
+
+		$templateString = str_replace(TL_ROOT,'',$templateString);
+
+		if(strstr($templateString, '/system/modules/core/') !== false) {
+			$icon = '<i class="fa fa-file-image-o"></i>';
+//			$icon = '<img src="/system/themes/flexible/images/themes.gif" alt="core template" />';
+		} else {
+			$icon = '<i class="fa fa-cog"></i>';
+		}
+
+		return $icon.' '.$templateString;
+
 
 	}
 
