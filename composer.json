@@ -15,5 +15,12 @@
     "contao/core":">=3.5",
     "contao-community-alliance/composer-installer":"*",
     "terminal42/contao-namespace-class-loader":">=1.0.2"
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "": "system/modules/templatehint"
+      }
+    }
   }
 }
